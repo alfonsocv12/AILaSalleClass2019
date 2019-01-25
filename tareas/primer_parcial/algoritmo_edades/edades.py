@@ -1,8 +1,16 @@
+'''
+Imports
+'''
+import sys
+
+'''
+Empieza el programa
+'''
 print('                          leeme                           ')
 print('------------------------------------------------------------')
 print('|                    Descubro tu edad                      |')
 print('|               Introduce lo que se te pida                |')
-print('| Cuando ponga Y/N pon una Y si estas de acuerdo y N si no |')
+print('| Cuando ponga S/N pon una Y si estas de acuerdo y N si no |')
 print('|      Todos los parametros son con el sistema metrico     |')
 print('|        En la estatura se utilizara el formato 1.xx       |')
 print('------------------------------------------------------------')
@@ -25,8 +33,50 @@ print('Universidad                       5')
 print('Mas                               6')
 Escuela = input('Selecciona una opcion: ')
 puntuacion += int(Escuela)
-tu_edad = {
-    (puntuacion < 4) : '0  a 16',
-    (puntuacion < 6) : '16 a 20'
-}
-print('Tu edad esta entre {}'.format(tu_edad))
+print('Cual es tu estado civil')
+print('Casado/Soltero/viudo')
+estado_civil = input('C/S/V:')
+if puntuacion < 5:
+    '''
+    Posiblemente adulto mayor
+    '''
+    nietos = input('Tiene nietos S/N: ')
+
+if nietos == 'S':
+    '''
+    Su edad minima es de 30 años
+    '''
+    if estado_civil == 'V':
+        '''
+        Muy probable que sea adulto mayor
+        '''
+        print('Por sus datos calculo que su edad es 60 o Mas ')
+        sys.exit(0)
+    elif estado_civil == 'C':
+        '''
+        Muy probable que sea adulto mayor
+        '''
+        print('Por sus datos calculo que su edad es 60 o Mas ')
+        sys.exit(0)
+else:
+    '''
+    Probablemente un niño
+    '''
+    casa = input('Vives en la casa de tus padres Y/N: ')
+    if casa == 'Y':
+        if puntuacion < 2:
+            print('Por los datos que me diste calculo que eres un niño')
+            sys.exit(0)
+        else:
+            '''
+            Posiblemente un adolecente:
+            '''
+            continuas_estudiando = input('Sigues estudiando S/N: ')
+            if continuas_estudiando == 'S':
+                '''
+                Muy Posiblemente un adolecente
+                '''
+                print('por la informacion que me diste creo que tu edad esta entre 10 y 15')
+                sys.exit(0)
+print('todavia puedo calcular esos parametros espera actualizacion')
+print(puntuacion)
