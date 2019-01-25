@@ -42,41 +42,65 @@ if puntuacion < 5:
     '''
     nietos = input('Tiene nietos S/N: ')
 
-if nietos == 'S':
-    '''
-    Su edad minima es de 30 años
-    '''
-    if estado_civil == 'V':
+    if nietos == 'S':
         '''
-        Muy probable que sea adulto mayor
+        Su edad minima es de 30 años
         '''
-        print('Por sus datos calculo que su edad es 60 o Mas ')
-        sys.exit(0)
-    elif estado_civil == 'C':
+        if estado_civil == 'V':
+            '''
+            Muy probable que sea adulto mayor
+            '''
+            print('Por sus datos calculo que su edad es 60 o Mas ')
+            sys.exit(0)
+        elif estado_civil == 'C':
+            '''
+            Muy probable que sea adulto mayor
+            '''
+            print('Por sus datos calculo que su edad es 60 o Mas ')
+            sys.exit(0)
+    else:
         '''
-        Muy probable que sea adulto mayor
+        Probablemente un niño
         '''
-        print('Por sus datos calculo que su edad es 60 o Mas ')
-        sys.exit(0)
-else:
+        casa = input('Vives en la casa de tus padres Y/N: ')
+        if casa == 'Y':
+            if puntuacion < 2:
+                print('Por los datos que me diste calculo que eres un niño')
+                sys.exit(0)
+            else:
+                '''
+                Posiblemente un adolecente:
+                '''
+                continuas_estudiando = input('Sigues estudiando S/N: ')
+                if continuas_estudiando == 'S':
+                    '''
+                    Muy Posiblemente un adolecente
+                    '''
+                    print('por la informacion que me diste creo que tu edad esta entre 10 y 15')
+                    sys.exit(0)
+elif Escuela == 5:
     '''
-    Probablemente un niño
+    Probablemente adulto
     '''
-    casa = input('Vives en la casa de tus padres Y/N: ')
-    if casa == 'Y':
-        if puntuacion < 2:
-            print('Por los datos que me diste calculo que eres un niño')
+    hijos = input('Tienes hijos S/N: ').upper()
+    if hijos == 'S':
+        '''
+        Probablemente mayor a 22
+        '''
+        nietos = input('Tienes nietos S/N: ').upper()
+        if nietos == 'S':
+            print('Probablemente tienes de 55 a mas')
             sys.exit(0)
         else:
             '''
-            Posiblemente un adolecente:
+            probable menor de 55
             '''
-            continuas_estudiando = input('Sigues estudiando S/N: ')
-            if continuas_estudiando == 'S':
-                '''
-                Muy Posiblemente un adolecente
-                '''
-                print('por la informacion que me diste creo que tu edad esta entre 10 y 15')
-                sys.exit(0)
+            pass
+    else:
+        '''
+        Seguimos en los mismos parametros
+        '''
+        pass
+
 print('todavia puedo calcular esos parametros espera actualizacion')
 print(puntuacion)
