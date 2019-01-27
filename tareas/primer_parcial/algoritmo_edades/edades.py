@@ -168,7 +168,8 @@ elif Escuela >= 4 :
             '''
             Probablemente menor de 25
             '''
-            pass
+            print('Calculo que tu edad esta entre 19 a 25')
+            sys.exit(0)
         else:
             '''
             Probablemente entre 20 a 40
