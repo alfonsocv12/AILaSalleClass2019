@@ -131,8 +131,7 @@ elif Escuela >= 4 :
                 Probablemente sea menor de 24
                 '''
                 print('Calculo que tu edad esta entre 24 y 15 ')
-                print('pero me faltan algunos parametros para')
-                print('saber mas exactamente')
+                sys.exit(0)
             else:
                 '''
                 Mismos parametros
@@ -154,11 +153,37 @@ elif Escuela >= 4 :
                     '''
                     Probablemente entre 22 a 40
                     '''
-                    pass
+                    if escuela_hijos < 2:
+                        print('Calculo que tu edad esta entre 22 a 40')
+                        sys.exit(0)
+                    else:
+                        print('Calculo que tu edad esta entre 25 a 46')
+                        sys.exit(0)
     else:
         '''
         Seguimos en los mismos parametros
         '''
-        pass
-
+        dependes = input('Dependes monetariamente de un padre o tutor S/N: ').upper()
+        if dependes == 'S':
+            '''
+            Probablemente menor de 25
+            '''
+            pass
+        else:
+            '''
+            Probablemente entre 20 a 40
+            '''
+            casa_propia = input('Tienes casa propia S/N: ').upper()
+            if casa_propia = 'S':
+                '''
+                Probablemente mayor de 25
+                '''
+                print('Por los parametros que me estas dando')
+                print('calculo que tu edad es mayor de 25 pero')
+            else:
+                '''
+                Probablemente menor de 25
+                '''
+                print('Calculo que tu edad esta entre 19 a 25')
+                sys.exit(0)
 print('todavia puedo calcular esos parametros espera actualizacion')
