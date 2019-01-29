@@ -16,14 +16,6 @@ print('|        En la estatura se utilizara el formato 1.xx       |')
 print('------------------------------------------------------------')
 puntuacion = 0
 nombre = input('Introduce tu nombre: ')
-# sexo = input('Introduce tu sexo de nacimiento M/H:')
-# if sexo == 'h':
-#     estatura = 1.60
-# else:
-#     estatura = 1.50
-# estatura_usuario = input('Introduce tu estatura: ')
-# if float(estatura_usuario) > estatura:
-#      puntuacion += 1
 print('Cual es tu grado maximo de estudios')
 print('Kinder                            1')
 print('Primaria                          2')
