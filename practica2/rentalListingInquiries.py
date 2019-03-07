@@ -1,4 +1,4 @@
-import numpy as np, pandas as pd, plotly, plotly.plotly as py, plotly.graph_objs as go, matplotlib.pyplot as plt
+import numpy as np, pandas as pd, plotly, plotly.plotly as py, plotly.graph_objs as go, matplotlib.pyplot as plt, cufflinks as cf
 
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
@@ -41,27 +41,30 @@ rental_listing['interest_level'] = pd.get_dummies(rental_listing['interest_level
 plotly.tools.set_credentials_file(username='alfonsocv18', api_key='IukOlHfoQOc9CejJEThc')
 
 def plotBox(plot_data, msg):
-    print(plot_data.index.values)
-    print(plot_data.columns.values)
-    # trace0 = go.Box(
-    #     y=y0
+    cf.set_config_file(offline=False, world_readable=True, theme='ggplot')
+    plot_data.iplot(kind='box',filename=msg)
+    # trace0 = go.Scatter(x = plot_data.columns, y = plot_data.mean(), mode='lines', name='mean')
+    # layout = go.Layout(
+    #     yaxis=dict(
+    #         title=msg,
+    #         zeroline=False
+    #     ),
+    #     boxmode='group'
     # )
-    # trace1 = go.Box(
-    #     y=y1
-    # )
-    # data = [trace0, trace1]
-    #
-    # py.iplot(data)
+    # data = [trace0]
+    # fig = go.Figure(data=data, layout=layout)
 
 
 
-data_features = rental_listing.values
-data_labels = rental_listing['interest_level'].values
-bathrooms_data = pd.crosstab(rental_listing.interest_level, rental_listing.bathrooms)
-# print(bathrooms_data)
-plotBox(bathrooms_data, 'Interes en base a la cantidad de banos')
 
-X_train, X_test, Y_train, Y_test = train_test_split(data_features, data_labels, test_size=0.3)
+
+rental_listing_2 = rental_listing.head(20)
+data_labels = rental_listing_2['interest_level'].values
+bathrooms_dataframe = pd.DataFrame(index=rental_listing_2.bathrooms, columns=data_labels)
+print(bathrooms_dataframe)
+# plotBox(bathrooms_dataframe, 'Interes en base a la cantidad de banos')
+
+# X_train, X_test, Y_train, Y_test = train_test_split(data_features, data_labels, test_size=0.3)
 
 # model = DecisionTreeClassifier()
 # model.fit(X_train, Y_train)
