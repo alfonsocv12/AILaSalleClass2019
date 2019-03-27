@@ -145,8 +145,3 @@ for name, clf in zip(names, classifiers):
     score = clf.score(X_test,Y_test)
     y_pred = clf.predict(X_test)
     print('{}: {}'.format(name, score))
-    # print(name+": "+str(score))
-#     print(confusion_matrix(Y_test,y_pred,labels=None))
-#     print(cohen_kappa_score(Y_test,y_pred, labels=None))
-#     print(classification_report(Y_test,y_pred,labels=None))
-#     print(cross_val_score(clf,X_test,y_pred,cv=8))
