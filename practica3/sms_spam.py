@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 import pandas as pd, numpy as np
-
+import nltk
+from nltk import sent_tokenize
+from nltk.stem import PorterStemmer
+from nltk.tokenize.toktok import ToktokTokenizer
+from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
@@ -13,26 +17,33 @@ spam_df = pd.read_csv('spam.csv', index_col=None, na_values=['NA'], encoding='la
 # # print first 10 rows
 # print(spam_df.head(10))
 # print()
-#
-# # print describe info abouth the columns
-# print(spam_df.describe)
+
+'''
+Nltk
+'''
+# tokens = nltk.word_tokenize(text)
+toktok = ToktokTokenizer()
+stop_words = set(stopwords.words('english'))
+# print(toktok.tokenize(spam_df.head(3)['v2']))
 # print()
+
+spam_df['v2'] = spam_df.apply(lambda spam_df: nltk.word_tokenize(spam_df['v2']), axis=1)
+spam_df['v2'] = spam_df['v2'].apply(lambda x: [item for item in x if item not in stop_words])
+
+print(spam_df.head(10))
+print()
+
+# ps = PorterStemmer()
 #
-# # Print Data types
-# print(spam_df.dtypes)
-# print()
+# def stem_sentences(sentence):
+#     tokens = sentence.split()
+#     stemmed_tokens = [porter_stemmer.stem(token) for token in tokens]
+#     return ' '.join(stemmed_tokens)
 #
-# # Data missing snapshot
-# print(spam_df.apply(lambda x: x.isnull().any()))
-# print()
+# spam_df['v2'] = spam_df['v2'].apply(stem_sentences)
 #
-# # Data missing percent
-# print(pd.DataFrame({'percent_missing': spam_df.isnull().sum() * 100 / len(spam_df)}))
-# print()
-#
-# # Unique data Analisys
-# print(pd.DataFrame({'percent_unique': spam_df.apply(lambda x: x.unique().size/x.size*100)}))
-# print()
+# data['stemmed'] = data["stemmed"].apply(lambda x: [stemmer.stem(y) for y in x])
+
 
 '''
 vectorize df
@@ -43,11 +54,12 @@ data_features = vectorize.fit_transform(spam_df['v2'])
 # print all the words that are include on the df
 # print(vectorize.vocabulary_)
 
-# # summarize encoded vector
-# print(data_features.shape)
-# print()
-# print(data_features.toarray())
-# print()
+# summarize encoded vector
+print(data_features.shape)
+print()
+print(data_features.toarray())
+print()
+
 
 '''
 Train test split
