@@ -21,34 +21,33 @@ spam_df = pd.read_csv('spam.csv', index_col=None, na_values=['NA'], encoding='la
 '''
 Nltk
 '''
+
+def indentity(arg):
+    return arg
 # tokens = nltk.word_tokenize(text)
 toktok = ToktokTokenizer()
 stop_words = set(stopwords.words('english'))
+ps = PorterStemmer()
 # print(toktok.tokenize(spam_df.head(3)['v2']))
 # print()
 
-spam_df['v2'] = spam_df.apply(lambda spam_df: nltk.word_tokenize(spam_df['v2']), axis=1)
-spam_df['v2'] = spam_df['v2'].apply(lambda x: [item for item in x if item not in stop_words])
+tokenize = spam_df.apply(lambda spam_df: nltk.word_tokenize(spam_df['v2']), axis=1)
+words = tokenize.apply(lambda x: [item for item in x if item not in stop_words])
 
-print(spam_df.head(10))
-print()
+def stem_sentences(sentence):
+    tokens = sentence.split()
+    stemmed_tokens = [ps.stem(token) for token in tokens]
+    return ' '.join(stemmed_tokens)
 
-# ps = PorterStemmer()
-#
-# def stem_sentences(sentence):
-#     tokens = sentence.split()
-#     stemmed_tokens = [porter_stemmer.stem(token) for token in tokens]
-#     return ' '.join(stemmed_tokens)
-#
-# spam_df['v2'] = spam_df['v2'].apply(stem_sentences)
-#
-# data['stemmed'] = data["stemmed"].apply(lambda x: [stemmer.stem(y) for y in x])
+spam_df['v2'] = spam_df['v2'].apply(stem_sentences)
+
+# spam_df['v2'] = spam_df["v2"].apply(lambda x: [ps.stem(y) for y in x])
 
 
 '''
 vectorize df
 '''
-vectorize = CountVectorizer()
+vectorize = CountVectorizer(lowercase=False, tokenizer=indentity, preprocessor=None)
 data_features = vectorize.fit_transform(spam_df['v2'])
 
 # print all the words that are include on the df
